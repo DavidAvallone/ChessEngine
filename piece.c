@@ -3,6 +3,9 @@
 #include <stdbool.h>
 #include "piece.h"
 
+const char * BLACK_SQUARE = "\xE2\x96\xA1";
+const char * WHITE_SQUARE = "\xE2\x96\xA0";
+
 struct Piece createPiece(int value1, const char *rep) {
     struct Piece piece;
     piece.value = value1;
@@ -37,7 +40,7 @@ struct Piece pieceLookup(int p, bool color) {
 			return createPiece(1500, "\xE2\x99\x9A");
 
 	}
-	// color == false blacik
+	// color == false black
 	else {
 		// p = 0 pawn		
 		if (p == 0)
@@ -46,7 +49,7 @@ struct Piece pieceLookup(int p, bool color) {
 		else if (p == 1)
 			return createPiece(300, "\xE2\x99\x98");
 		// p = 2 bishop
-		else if (p == 1)
+		else if (p == 2)
 			return createPiece(300, "\xE2\x99\x97");
 		// p = 3 rook
 		else if (p == 3)
@@ -58,4 +61,5 @@ struct Piece pieceLookup(int p, bool color) {
 		else if (p == 5)
 			return createPiece(1500, "\xE2\x99\x94");
 	}
+	return createPiece(0, ""); // Adjust the default values as needed
 }
