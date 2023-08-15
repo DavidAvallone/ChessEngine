@@ -8,7 +8,7 @@ struct Board {
 };
 
 struct Board createBoard();
-void fillBoard();
 void printBoard(struct Board board);
+void printFEN(struct Board board);
 
 #endif

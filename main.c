@@ -3,12 +3,23 @@
 #include "piece.h"
 
 int main() {
-    // Create a new board
-    struct Board chessboard = createBoard();
+    	// Create a new board
+    	struct Board chessboard = createBoard();
  
-    fillBoard(chessboard);
+    	printBoard(chessboard);
 
-    printBoard(chessboard);    
+	printf("%s", "\n");
 
-    return 0;
+	printFEN(chessboard);
+
+	//for (int row = 0; row < 8; row++) {
+        //	for (int col = 0; col < 8; col++) {
+//			printf("%c", chessboard.chessboard[row][col].type);
+//		}
+//	}
+
+	printf("%s", "\n");
+
+	
+    	return 0;
 }
