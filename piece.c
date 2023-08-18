@@ -34,12 +34,14 @@ const char KING = 'K';
 const bool BLACK = false;
 const bool WHITE = true;
 
-struct Piece createPiece(int value1, const char *rep, bool color, char type) {
+struct Piece createPiece(int value1, const char *rep, bool color, char type, int row, int col) {
     struct Piece piece;
     piece.type = type;
     piece.white = color;
     piece.value = value1;
     piece.display = rep;
+    piece.currentPos[0] = row;
+    piece.currentPos[1] = col;
     return piece;
 } 
 
@@ -47,49 +49,49 @@ void printPiece(struct Piece p) {
 	printf("%s", p.display);
 }
 
-struct Piece pieceLookup(int p, bool color) {
+struct Piece pieceLookup(int p, bool color, int row, int col) {
 	// color == True white
 	if (color) {
 		// p = 0 pawn		
 		if (p == 0)
-			return createPiece(100, WHITE_PAWN, WHITE, PAWN);
+			return createPiece(100, WHITE_PAWN, WHITE, PAWN, row, col);
 		// p = 1 knight 
 		else if (p == 1)
-			return createPiece(300, WHITE_KNIGHT, WHITE, KNIGHT);
+			return createPiece(300, WHITE_KNIGHT, WHITE, KNIGHT, row, col);
 		// p = 2 bishop
 		else if (p == 2)
-			return createPiece(300, WHITE_BISHOP, WHITE, BISHOP);
+			return createPiece(300, WHITE_BISHOP, WHITE, BISHOP, row, col);
 		// p = 3 rook
 		else if (p == 3)
-			return createPiece(500, WHITE_ROOK, WHITE, ROOK);
+			return createPiece(500, WHITE_ROOK, WHITE, ROOK, row, col);
 		// p = 4 queen
 		else if (p == 4)
-			return createPiece(900, WHITE_QUEEN, WHITE, QUEEN);
+			return createPiece(900, WHITE_QUEEN, WHITE, QUEEN, row, col);
 		// p = 5 king
 		else if (p == 5)
-			return createPiece(1500, WHITE_KING, WHITE, KING);
+			return createPiece(1500, WHITE_KING, WHITE, KING, row, col);
 
 	}
 	// color == false black
 	else {
 		// p = 0 pawn		
 		if (p == 0)
-			return createPiece(100, BLACK_PAWN, BLACK, PAWN);
+			return createPiece(100, BLACK_PAWN, BLACK, PAWN, row, col);
 		// p = 1 knight
 		else if (p == 1)
-			return createPiece(300, BLACK_KNIGHT, BLACK, KNIGHT);
+			return createPiece(300, BLACK_KNIGHT, BLACK, KNIGHT, row, col);
 		// p = 2 bishop
 		else if (p == 2)
-			return createPiece(300, BLACK_BISHOP, BLACK, BISHOP);
+			return createPiece(300, BLACK_BISHOP, BLACK, BISHOP, row, col);
 		// p = 3 rook
 		else if (p == 3)
-			return createPiece(500, BLACK_ROOK, BLACK, ROOK);
+			return createPiece(500, BLACK_ROOK, BLACK, ROOK, row, col);
 		// p = 4 queen
 		else if (p == 4)
-			return createPiece(900, BLACK_QUEEN, BLACK, QUEEN);
+			return createPiece(900, BLACK_QUEEN, BLACK, QUEEN, row, col);
 		// p = 5 king
 		else if (p == 5)
-			return createPiece(1500, BLACK_KING, BLACK, KING);
+			return createPiece(1500, BLACK_KING, BLACK, KING, row, col);
 	}
-	return createPiece(0, "", NULL, 'X'); // Adjust the default values as needed
+	return createPiece(0, "", NULL, 'X',9,9); // Adjust the default values as needed
 }

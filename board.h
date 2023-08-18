@@ -10,5 +10,6 @@ struct Board {
 struct Board createBoard();
 void printBoard(struct Board board);
 void printFEN(struct Board board);
+void boardDebugger(struct Board board);
 
 #endif

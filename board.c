@@ -7,15 +7,17 @@
 
 const int SIZE = 8;
 
+//This is the struct for the board class it creates an 8*8 board
+//It fills it with the starting postion of a chess game
 struct Board createBoard() {
     struct Board board;
     
     for (int row = 0; row < SIZE; row++) {
         for (int col = 0; col < SIZE; col++) {
             if ((row + col) % 2 != 0)
-                board.chessboard[row][col] = createPiece(0, "\xE2\x96\xA1", true, 's');
+                board.chessboard[row][col] = createPiece(0, "\xE2\x96\xA1", true, 's', row, col);
             else
-                board.chessboard[row][col] = createPiece(0, "\xE2\x96\xA0", false, 's');
+                board.chessboard[row][col] = createPiece(0, "\xE2\x96\xA0", false, 's', row, col);
         }
     }
     int Pieces[8] = {3, 1, 2, 4, 5, 2, 1, 3};
@@ -23,18 +25,19 @@ struct Board createBoard() {
     for (int row = 0; row < SIZE; row++) {
         for (int col = 0; col < SIZE; col++) {
 	    if (row == 0)
-                board.chessboard[row][col] = pieceLookup(Pieces[col], false);
+                board.chessboard[row][col] = pieceLookup(Pieces[col], false, row, col);
             else if (row == 1)
-                board.chessboard[row][col] = pieceLookup(Pawns[col], false);
+                board.chessboard[row][col] = pieceLookup(Pawns[col], false, row, col);
             else if (row == 6)
-                board.chessboard[row][col] = pieceLookup(Pawns[col], true);
+                board.chessboard[row][col] = pieceLookup(Pawns[col], true, row, col);
             else if (row == 7)
-                board.chessboard[row][col] = pieceLookup(Pieces[col], true);
+                board.chessboard[row][col] = pieceLookup(Pieces[col], true, row, col);
         }
     }
     return board;
 }
 
+// This displays the current board state
 void printBoard(struct Board board) {
 	for (int row = 0; row < SIZE; row++) {
         	for (int col = 0; col < SIZE; col++) {
@@ -44,6 +47,7 @@ void printBoard(struct Board board) {
     }
 }
 
+// This displays the current fen representation of the board
 void printFEN(struct Board board) {
     //char pieceSymbols[] = "PNBRQKpnbrqk";
     char fen[71];
@@ -80,3 +84,23 @@ void printFEN(struct Board board) {
 
     printf("FEN: %s\n", fen);
 }
+
+// This is used to make sure the current positions of a piece are correct
+void boardDebugger(struct Board board){
+	char b = 'b';		
+	char w = 'w';
+	char color;
+	for (int row = 0; row < 8; row++) {
+        	for (int col = 0; col < 8; col++) {
+			if (board.chessboard[row][col].white)
+				color = w;
+			else
+				color = b;
+
+			printf("%c %c: ", color, board.chessboard[row][col].type);
+			printf("%d, %d", board.chessboard[row][col].currentPos[0], board.chessboard[row][col].currentPos[1]);
+			printf("%s", "\n");	
+		}
+	}
+}
+

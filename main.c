@@ -11,14 +11,10 @@ int main() {
 	printf("%s", "\n");
 
 	printFEN(chessboard);
-
-	//for (int row = 0; row < 8; row++) {
-        //	for (int col = 0; col < 8; col++) {
-//			printf("%c", chessboard.chessboard[row][col].type);
-//		}
-//	}
-
+	
 	printf("%s", "\n");
+
+	boardDebugger(chessboard);
 
 	
     	return 0;
