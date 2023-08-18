@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include "board.h"
 #include "piece.h"
-
+#include <ctype.h>
 
 const int SIZE = 8;
 
@@ -45,7 +45,7 @@ void printBoard(struct Board board) {
 }
 
 void printFEN(struct Board board) {
-    char pieceSymbols[] = "PNBRQKpnbrqk";
+    //char pieceSymbols[] = "PNBRQKpnbrqk";
     char fen[71];
     int fenIndex = 0;
 
@@ -57,12 +57,13 @@ void printFEN(struct Board board) {
 
             if (piece.type == 's') {  // Check for empty square
                 emptyCount++;
-            } else {
+            } 
+	    else {
                 if (emptyCount > 0) {
                     fen[fenIndex++] = '0' + emptyCount;
                     emptyCount = 0;
                 }
-                fen[fenIndex++] = piece.white ? pieceSymbols[(int)(piece.type - 'P')] : pieceSymbols[(int)(piece.type - 'P') + 6];
+                fen[fenIndex++] = piece.white ? piece.type : tolower(piece.type);
             }
         }
 
