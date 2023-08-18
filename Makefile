@@ -2,10 +2,10 @@ CC = gcc
 CFLAGS = -Wall
 
 # List of source files
-SOURCES = piece.c board.c main.c
+SOURCES = piece.c board.c moves.c main.c
 
 # List of header files
-HEADERS = piece.h board.h
+HEADERS = piece.h board.h moves.h
 
 # Name of the output executable
 TARGET = main

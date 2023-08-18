@@ -104,3 +104,24 @@ void boardDebugger(struct Board board){
 	}
 }
 
+char* getBoardPosition(struct Board b, int row, int col) {
+    struct Piece p = b.chessboard[row][col];
+    char c;
+    if (p.white)
+        c = 'w';
+    else
+        c = 'b';
+    
+    char* pos = (char*)malloc(3 * sizeof(char)); // Allocate memory for the string
+    
+    if (pos == NULL) {
+        // Handle memory allocation failure
+        return NULL;
+    }
+    
+    pos[0] = c;
+    pos[1] = p.type;
+    pos[2] = '\0';
+    
+    return pos;
+}

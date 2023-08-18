@@ -42,6 +42,7 @@ struct Piece createPiece(int value1, const char *rep, bool color, char type, int
     piece.display = rep;
     piece.currentPos[0] = row;
     piece.currentPos[1] = col;
+    piece.firstMove = true;
     return piece;
 } 
 
@@ -94,4 +95,8 @@ struct Piece pieceLookup(int p, bool color, int row, int col) {
 			return createPiece(1500, BLACK_KING, BLACK, KING, row, col);
 	}
 	return createPiece(0, "", NULL, 'X',9,9); // Adjust the default values as needed
+}
+
+struct Board movePiece(struct Piece p, char* move, struct Moves m, struct Board b){
+	return b;
 }
